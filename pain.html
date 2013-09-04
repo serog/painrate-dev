@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pain Rate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	
+	
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+</head>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+
+<script>
+
+  
+   
+    var d = new Date();
+    var curr_date = d.getDate();
+    var curr_month = d.getMonth() + 1; //Months are zero based
+    var curr_year = d.getFullYear();
+    var datestring = curr_date + "-" + curr_month + "-" + curr_year;
+    
+    var timestring = d.getHours() + ":"  
+                + d.getMinutes() + ":" 
+                + d.getSeconds();   //timestamp shows the time the form opens, not time of submit!
+  
+  
+   $(function() {
+    $( "#slider" ).slider({
+      value:5,
+      min: 0,
+      max: 10,
+      step: 1,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( ui.value + " out of 10." );
+        console.log($("#amount").val());
+      }
+    });
+    $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
+   console.log('Testing console inside slider');
+   //console.log($("#amount").val());
+  
+   $('form').submit(function(){
+       console.log('inside submit function');
+        //alert($("#amount").val());
+        var agedata = {'date': datestring, 'time': timestring, 'painrate':$("#amount").val(), 'qolrate':$("#slider-3").val(), 'toggle':$("#flip-3").val(), 'toggle2':$("#flip-4").val() };
+   var json_text = JSON.stringify(agedata);
+   
+       //alert(json_text);
+    
+       $.ajax({
+           type: 'post',
+           data:json_text,
+           contentType: 'application/json; charset=utf-8',
+           dataType: 'json',
+           //async: false,
+           //cache: false,
+           url: 'paindata_pg.php',
+           success: function(response){
+              
+              alert('Your comment was successfully added:'+ response);
+           },
+           error: function(data, textStatus, errorThrown) { 
+           // XMLHttpRequest, textStatus, errorThrown) { 
+              alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+             // console.log("data=", data);
+             // console.log(data);
+             alert('There was an error adding your comment..');
+           }
+       });
+
+   return false;
+   });
+});
+
+  </script>
+   <body>  
+  
+ <div data-role="page">
+ <div data-role="header">
+		<h1>Pain Rate Tests</h1>
+	</div><!-- /header -->
+	
+<div data-role="content">
+
+<p>
+
+  <label for="amount">Move the slider to rate your pain:</label>
+  <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;" />
+</p>
+ 
+<div id="slider" style="width:90%;"></div>
+<hr>
+
+<div data-role="fieldcontain">
+	<label for="slider-3">Input slider:</label>
+	<input type="range" name="slider-3" id="slider-3" value="5" min="0" max="10" step="1" data-theme="a" data-track-theme="b" />
+</div>
+<hr>
+
+<div data-role="fieldcontain">
+	<label for="flip-3">Flip switch:</label>
+	<select name="flip-3" id="flip-3" data-role="slider" data-theme="a">
+		<option value="no">No</option>
+		<option value="yes">Yes</option>
+	</select> 
+	<label for="flip-4">Flip switch 2:</label>
+	<select name="flip-4" id="flip-4" data-role="slider" data-theme="a">
+		<option value="no">No</option>
+		<option value="yes">Yes</option>
+	</select> 
+</div>
+
+
+
+<div id="submitform"  data-landmark-id="1"><form><input type="submit" value="Submit"></form></div>
+</div></div>
+</body>
+</html>
