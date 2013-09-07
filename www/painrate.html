@@ -63,7 +63,7 @@
            dataType: 'json',
            //async: false,
            //cache: false,
-           url: 'paindata_pg.php',
+           url: 'http://solutionlibre.com/britta/paindata_pg.php',
            success: function(response){
               
               alert('Your comment was successfully added:'+ response);
@@ -71,8 +71,8 @@
            error: function(data, textStatus, errorThrown) { 
            // XMLHttpRequest, textStatus, errorThrown) { 
               alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-             // console.log("data=", data);
-             // console.log(data);
+             console.log("data=", data);
+             console.log(data);
              alert('There was an error adding your comment..');
            }
        });
