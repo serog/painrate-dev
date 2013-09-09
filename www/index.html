@@ -50,8 +50,8 @@
                             'Device UUID: '     + device.uuid     + '<br />' + 
                             'Device Version: '  + device.version  + '<br />';
 
-     localStorage.setItem('devicename',device.name);
-     localStorage.setItem('devicename',device.uuid);
+     localStorage.setItem('devicename', JSON.stringify(device.name));
+     localStorage.setItem('deviceuuid', JSON.stringify(device.uuid));
     }
 
 

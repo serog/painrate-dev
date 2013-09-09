@@ -54,7 +54,7 @@
    $('form').submit(function(){
        console.log('inside submit function');
         //alert($("#amount").val());
-        var agedata = {'date': datestring, 'time': timestring, 'painrate':$("#amount").val(), 'qolrate':$("#slider-3").val(), 'toggle':$("#flip-3").val(), 'toggle2':$("#flip-4").val(), 'uuid':  localStorage.getItem('deviceuuid'), 'devicename':  localStorage.getItem('devicename') };
+        var agedata = {'date': datestring, 'time': timestring, 'painrate':$("#amount").val(), 'qolrate':$("#slider-3").val(), 'toggle':$("#flip-3").val(), 'toggle2':$("#flip-4").val(), 'uuid':  JSON.parse(localStorage.getItem('deviceuuid')), 'devicename':  JSON.parse(localStorage.getItem('devicename')) };
    var json_text = JSON.stringify(agedata);
    
        //alert(json_text);
