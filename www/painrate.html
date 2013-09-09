@@ -34,7 +34,24 @@
                 + d.getMinutes() + ":" 
                 + d.getSeconds();   //timestamp shows the time the form opens, not time of submit!
 
-   
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        var element = document.getElementById('deviceProperties');
+
+      
+
+        element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
+                            'Device Cordova: '  + device.cordova + '<br />' + 
+                            'Device Platform: ' + device.platform + '<br />' + 
+                            'Device UUID: '     + device.uuid     + '<br />' + 
+                            'Device Version: '  + device.version  + '<br />';
+    }
+
   
    $(function() {
     $( "#slider" ).slider({
@@ -93,7 +110,7 @@
 	</div><!-- /header -->
 	
 <div data-role="content">
-
+ <p id="deviceProperties">Loading device properties...</p>
 <p>
 
   <label for="amount">Move the slider to rate your pain:</label>
@@ -104,18 +121,18 @@
 <hr>
 
 <div data-role="fieldcontain">
-	<label for="slider-3">Input slider:</label>
+	<label for="slider-3">Rate your day:</label>
 	<input type="range" name="slider-3" id="slider-3" value="5" min="0" max="10" step="1" data-theme="a" data-track-theme="b" />
 </div>
 <hr>
 
 <div data-role="fieldcontain">
-	<label for="flip-3">Flip switch:</label>
+	<label for="flip-3">Have you taken your meds today?:</label>
 	<select name="flip-3" id="flip-3" data-role="slider" data-theme="a">
 		<option value="no">No</option>
 		<option value="yes">Yes</option>
 	</select> 
-	<label for="flip-4">Flip switch 2:</label>
+	<label for="flip-4">Have you taken any additional meds today?:</label>
 	<select name="flip-4" id="flip-4" data-role="slider" data-theme="a">
 		<option value="no">No</option>
 		<option value="yes">Yes</option>

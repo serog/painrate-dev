@@ -26,7 +26,6 @@
         <title>Hello World</title>
 <script>
 
-   var $deviceuuid, $devicename;
 
    // Call onDeviceReady when Cordova is loaded.
     //
@@ -43,8 +42,7 @@
     function onDeviceReady() {
         var element = document.getElementById('deviceProperties');
 
-        $deviceuuid = device.uuid;
-$deviceuuid = device.uuid;
+      
 
         element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
                             'Device Cordova: '  + device.cordova + '<br />' + 
@@ -58,10 +56,10 @@ $deviceuuid = device.uuid;
 
     </script>
     </head>
-  <body onload="onLoad()">
+  <body>
     <p id="deviceProperties">Loading device properties...</p>
 
-Here is uuid = <script>document.write($deviceuuid)</script> and <script>document.write($devicename)</script> text.
+
 
         <div class="app">
             <h1>PhoneGap</h1>
