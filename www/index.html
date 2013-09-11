@@ -110,32 +110,43 @@ console.log(device.name);
 });
 
   </script>
-  <body onload="onLoad()">
+
+<body onload="onLoad()">
   
 
 <div data-role="page" id="one">
- <div data-role="header">
-		<h1>Pain Rate Tests</h1>
+   <div data-role="header">
+        <h1>Pain Rate Tests</h1>
 	</div><!-- /header -->
 	
-<div data-role="content">
- <div class="app">
- <div id="deviceready" class="blink">
+   <div data-role="content">
+       <div class="app">
+         <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
-            </div>
-  <p id="deviceProperties">Loading device properties...</p> 
-
-          
-        </div>
-        <!-- script type="text/javascript" src="phonegap.js"></script>
+                </div>
+         <p id="deviceProperties">Loading device properties...</p> 
+         </div>
+ 
+       <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
-        </script -->
+        </script>
+
+<p><a href="#two" data-role="button">PAIN RATE</a></p>
+   </div><!-- /content -->       
+</div><!-- /page one --> 
 
 
 
+
+<div data-role="page" id="two">
+<div data-role="header">
+		<h1>Pain Rate Tests</h1>
+	</div><!-- /header -->
+<div data-role="content" >	
+		<h2>TWO</h2>
 
 <div data-role="fieldcontain">
 	<label for="slider-3">Rate your Current Pain Level:</label>
@@ -167,15 +178,23 @@ console.log(device.name);
 
 
 <div id="submitform"  data-landmark-id="1"><form><input type="submit" value="Submit"></form></div>
-</div>
-<p><a href="#two" data-role="button">Show page two</a></p>
-</div>
-<div data-role="page" id="two">
+
+
+
+
+
+<p><a href="#three" data-role="button">Show page three</a></p>
+  </div><!-- /content -->       
+</div><!-- /page two --> 
+
+
+
+<div data-role="page" id="three">
 <div data-role="header">
 		<h1>Pain Rate Tests</h1>
 	</div><!-- /header -->
 <div data-role="content" >	
-		<h2>two</h2>
+		<h2>three</h2>
 
 <div data-role="fieldcontain">
 	<label for="slider-4">Rate your general Quality of Life for the past week:</label>
@@ -183,7 +202,8 @@ console.log(device.name);
 </div>
 
 
-</div></div>
+  </div><!-- /content -->       
+</div><!-- /page three --> 
 
 </body>
 </html>
