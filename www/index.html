@@ -119,21 +119,22 @@ console.log(device.name);
 	</div><!-- /header -->
 	
 <div data-role="content">
+ <div class="app">
  <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
   <p id="deviceProperties">Loading device properties...</p> 
 
+          
+        </div>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
 
-<!--p>
 
-  <label for="amount">Rate your current pain level:</label>
-  <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;" />
-</p>
- 
-<div id="slider" style="width:90%;"></div>
-<hr -->
 
 
 <div data-role="fieldcontain">
