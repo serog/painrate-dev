@@ -36,9 +36,9 @@
     var devicename = JSON.stringify(device.name);
 
      //localStorage.setItem('deviceuuid', JSON.stringify(device.uuid));
-     alert (deviceuuid);
-     alert(device.uuid); 
-     alert(device.name);
+     //alert (deviceuuid);
+     //alert(device.uuid); 
+     //alert(device.name);
      //console.log(device.name);
     }
 
@@ -84,7 +84,7 @@
                 + d.getSeconds();   //timestamp shows time of submit!
 
         
-       var agedata = {'date': datestring, 'time': timestring, 'painrate':$("#slider-2").val(), 'qolrate':$("#slider-3").val(), 'toggle':$("#flip-3").val(), 'toggle2':$("#flip-4").val(), 'uuid': deviceuuid, 'devicename': devicename };
+       var agedata = {'date': datestring, 'time': timestring, 'painrate':$("#slider-2").val(), 'qolrate':$("#slider-3").val(), 'toggle':$("#flip-3").val(), 'toggle2':$("#flip-4").val(), 'uuid': device.uuid, 'name': device.name };
        var json_text = JSON.stringify(agedata);
    
        //alert(json_text);
