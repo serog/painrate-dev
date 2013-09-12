@@ -32,14 +32,15 @@
                             'Device Version: '  + device.version  + '<br />';
 
     // localStorage.setItem('devicename', JSON.stringify(device.name));
-    var deviceuuid = JSON.stringify(device.uuid); 
-    var devicename = JSON.stringify(device.name);
+    //var deviceuuid = JSON.stringify(device.uuid); 
+    //var devicename = JSON.stringify(device.name);
 
      //localStorage.setItem('deviceuuid', JSON.stringify(device.uuid));
      //alert (deviceuuid);
      //alert(device.uuid); 
      //alert(device.name);
      //console.log(device.name);
+      $.mobile.changePage("#two");  
     }
 
 
@@ -140,6 +141,9 @@
         </script>
 
 <p><a href="#two" data-role="button">PAIN RATE</a></p>
+
+ 
+
    </div><!-- /content -->       
 </div><!-- /page one --> 
 
