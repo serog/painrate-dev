@@ -101,7 +101,8 @@
                 + d.getSeconds();   //timestamp shows time of submit!
 
        if (d.getDay() != 1){ //!monday, set val to -1. 
-	 $("#slider-4").val() = -1;
+	 $("#slider-4").val() = -1; 
+         alert('not monday!');
 	}
 
        var agedata = {'date': datestring, 'time': timestring, 'painrate':$("#slider-2").val(), 'qolrate':$("#slider-3").val(), 'toggle':$("#flip-3").val(), 'toggle2':$("#flip-4").val(), 'uuid': device.uuid, 'name': device.name, 'weekrate': $("#slider-4").val()};
@@ -110,7 +111,7 @@
      
      
 
-       //alert(json_text);
+       alert(json_text);
     
        $.ajax({
            type: 'post',
