@@ -98,7 +98,7 @@
 	//alert('datestring:' + datestring + ' timestring:' + timestring );
 	var devicename = 'devicename';
 	var deviceuuid = 'deviceuuid';
-	if (device.uuid != NULL) { 
+	if (device.uuid != null || device.uuid != undefined) { 
 		deviceuuid = device.uuid;
 		devicename = device.name;
 		}
