@@ -2,11 +2,11 @@
 <html>
 <head> <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title></title>
 
-<script src="http://debug.phonegap.com/target/target-script-min.js#painrate130912"></script>
+<!-- script src="http://192.168.1.4/target/target-script-min.js#painrate130912"></script -->
 <script>
 
 
@@ -18,6 +18,16 @@
     //
     function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
+        
+	//var elementday = document.getElementById('dayinfo');
+        var d = new Date();
+        //elementday.innerHTML = 'day of the week = ' + d.getDay();
+	if (d.getDay() == 1) { //monday show the last question
+	     document.getElementById('onmonday').style.visibility = 'show';
+		}
+	else {
+             document.getElementById('onmonday').style.visibility = 'hidden';
+	}
     }
 
     // Cordova is ready
@@ -33,6 +43,9 @@
                             'Device UUID: '     + device.uuid     + '<br />' + 
                             'Device Version: '  + device.version  + '<br />';
 
+
+       
+ 
     // localStorage.setItem('devicename', JSON.stringify(device.name));
     //var deviceuuid = JSON.stringify(device.uuid); 
     //var devicename = JSON.stringify(device.name);
@@ -42,7 +55,7 @@
      //alert(device.uuid); 
      //alert(device.name);
      //console.log(device.name);
-      $.mobile.changePage("#two");  
+      //$.mobile.changePage("#two");  
     }
 
 
@@ -87,10 +100,16 @@
                 + d.getMinutes() + ":" 
                 + d.getSeconds();   //timestamp shows time of submit!
 
-        
-       var agedata = {'date': datestring, 'time': timestring, 'painrate':$("#slider-2").val(), 'qolrate':$("#slider-3").val(), 'toggle':$("#flip-3").val(), 'toggle2':$("#flip-4").val(), 'uuid': device.uuid, 'name': device.name };
+       if (d.getDay() != 1){ //!monday, set val to -1. 
+	 $("#slider-4").val() = -1;
+	}
+
+       var agedata = {'date': datestring, 'time': timestring, 'painrate':$("#slider-2").val(), 'qolrate':$("#slider-3").val(), 'toggle':$("#flip-3").val(), 'toggle2':$("#flip-4").val(), 'uuid': device.uuid, 'name': device.name, 'weekrate': $("#slider-4").val()};
        var json_text = JSON.stringify(agedata);
-   
+
+     
+     
+
        //alert(json_text);
     
        $.ajax({
@@ -103,11 +122,11 @@
            url: 'http://solutionlibre.com/britta/paindata_pg.php',
            success: function(response){
               
-              alert('Your comment was successfully added:'+ response);
+              alert('Thank you for your input.'+ response);
            },
            error: function(data, textStatus, errorThrown) { 
            // XMLHttpRequest, textStatus, errorThrown) { 
-              alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+              alert("Status: " + textStatus + errorThrown); 
               console.log("agedata=", agedata);
               console.log(agedata);
              
@@ -125,11 +144,11 @@
 
 <div data-role="page" id="one">
    <div data-role="header">
-        <h1>Pain Rate Tests</h1>
+        <h1>Pain Rating</h1>
 	</div><!-- /header -->
 	
    <div data-role="content">
-       <div class="app">
+       <div class="app" style="visibility:hidden;">
          <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
@@ -143,22 +162,23 @@
             app.initialize();
         </script>
 
-<p><a href="#two" data-role="button">PAIN RATE</a></p>
+<!-- p><a href="#two" data-role="button">Pain Rating</a></p>
 
  
 
-   </div><!-- /content -->       
-</div><!-- /page one --> 
+   </div><!-- /content ->       
+</div><!-- /page one -> 
 
 
 
 
 <div data-role="page" id="two">
 <div data-role="header">
-		<h1>Pain Rate Tests</h1>
-	</div><!-- /header -->
+		<h1>Pain Rating</h1>
+	</div>
 <div data-role="content" >	
 		<h2>TWO</h2>
+--><p>
 
 <div data-role="fieldcontain">
 	<label for="slider-3">Rate your Current Pain Level:</label>
@@ -167,20 +187,20 @@
 <hr>
 
 <div data-role="fieldcontain">
-	<label for="slider-3">Rate your current Quality of Life:</label>
+	<label for="slider-3">Rate your Current Quality of Life:</label>
 	<input type="range" name="slider-3" id="slider-3" value="5" min="0" max="10" step="1" data-theme="a" data-track-theme="b" />
 </div>
 <hr>
 
 <div data-role="fieldcontain">
-	<label for="flip-3">Have you taken today's meds?</label>
+	<label for="flip-3">Have you taken Today's Medications?</label>
 	<select name="flip-3" id="flip-3" data-role="slider" data-theme="a">
 		<option value="no">No</option>
 		<option value="yes">Yes</option>
 	</select>
 </div> 
 <div data-role="fieldcontain">
-	<label for="flip-4">Taken any additional meds?</label>
+	<label for="flip-4">Taken any Additional Pain Medications?</label>
 	<select name="flip-4" id="flip-4" data-role="slider" data-theme="a">
 		<option value="no">No</option>
 		<option value="yes">Yes</option>
@@ -188,34 +208,25 @@
 </div>
 
 
+<div id="dayinfo"></div>
+
+
+
+  <div id="onmonday" data-role="fieldcontain">
+	<label for="slider-4">Rate your General Quality of Life during the Past Week:</label>
+	<input type="range" name="slider-4" id="slider-4" value="5" min="0" max="10" step="1" data-theme="a" data-track-theme="b" />
+  </div>
+
 
 <div id="submitform"  data-landmark-id="1"><form><input type="submit" value="Submit"></form></div>
 
 
 
 
-
-<p><a href="#three" data-role="button">Show page three</a></p>
   </div><!-- /content -->       
-</div><!-- /page two --> 
+</div><!-- /page  --> 
 
 
-
-<div data-role="page" id="three">
-<div data-role="header">
-		<h1>Pain Rate Tests</h1>
-	</div><!-- /header -->
-<div data-role="content" >	
-		<h2>three</h2>
-
-<div data-role="fieldcontain">
-	<label for="slider-4">Rate your general Quality of Life for the past week:</label>
-	<input type="range" name="slider-4" id="slider-4" value="5" min="0" max="10" step="1" data-theme="a" data-track-theme="b" />
-</div>
-
-
-  </div><!-- /content -->       
-</div><!-- /page three --> 
 
 </body>
 </html>
