@@ -20,14 +20,14 @@
         document.addEventListener("deviceready", onDeviceReady, false);
         
 	//var elementday = document.getElementById('dayinfo');
-        var d = new Date();
+       // var d = new Date();
         //elementday.innerHTML = 'day of the week = ' + d.getDay();
-	if (d.getDay() == 1) { //monday show the last questionisible
-	     document.getElementById('onmonday').style.display = 'block';
-		}
-	else {
-             document.getElementById('onmonday').style.display = 'none';
-	}
+	//if (d.getDay() == 1) { //monday show the last questionisible
+	//     document.getElementById('onmonday').style.display = 'block';
+	//	}
+	//else {
+       //      document.getElementById('onmonday').style.display = 'none';
+	//}
     }
 
     // Cordova is ready
@@ -77,6 +77,16 @@
   
    $(function() {
    
+
+     var today = new Date();
+        
+	if (today.getDay() == 1) { //monday show the last questionisible
+	     document.getElementById('onmonday').style.display = 'block';
+		}
+	else {
+             document.getElementById('onmonday').style.display = 'none';
+	}
+
   
    $('form').submit(function(){
        console.log('inside submit function');
