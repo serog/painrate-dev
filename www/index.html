@@ -34,7 +34,7 @@
     //
     function onDeviceReady() {
         var element = document.getElementById('deviceProperties');
-
+        
       
 
         element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
@@ -74,9 +74,9 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
-<script src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+<!--script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script -->
+<!--script src="http://documentcloud.github.com/underscore/underscore-min.js"></script -->
+<!--script src="http://documentcloud.github.com/backbone/backbone-min.js"></script -->
 
 <script>
 
@@ -100,18 +100,28 @@
                 + d.getMinutes() + ":" 
                 + d.getSeconds();   //timestamp shows time of submit!
 
-       if (d.getDay() != 1){ //!monday, set val to -1. 
-	 $("#slider-4").val() = -1; 
-         alert('not monday!');
-	}
+       var qolweek = -1;
+       if (d.getDay() == 1){ //monday, set qol for the week with slider. 
+	 qolweek = $("#slider-4").val(); 
+        }
+	//alert('qolweek = ' + qolweek.toString());
+	//alert('datestring:' + datestring + ' timestring:' + timestring );
+	var devicename = 'devicename';
+	var deviceuuid = 'deviceuuid';
+	if (device.uuid != NULL) { 
+		deviceuuid = device.uuid;
+		devicename = device.name;
+		}
+	
+        alert('uuid:' + deviceuuid + ' name' + devicename);
 
-       var agedata = {'date': datestring, 'time': timestring, 'painrate':$("#slider-2").val(), 'qolrate':$("#slider-3").val(), 'toggle':$("#flip-3").val(), 'toggle2':$("#flip-4").val(), 'uuid': device.uuid, 'name': device.name, 'weekrate': $("#slider-4").val()};
+       var agedata = {'date': datestring, 'time': timestring, 'painrate':$("#slider-2").val(), 'qolrate':$("#slider-3").val(), 'toggle':$("#flip-3").val(), 'toggle2':$("#flip-4").val(), 'uuid': deviceuuid, 'name': devicename, 'weekrate': qolweek};
        var json_text = JSON.stringify(agedata);
 
      
      
 
-       alert(json_text);
+      
     
        $.ajax({
            type: 'post',
@@ -145,11 +155,11 @@
 
 <div data-role="page" id="one">
    <div data-role="header">
-        <h1>Pain Rating 1</h1>
+        <h1>Pain Rating 3</h1>
 	</div><!-- /header -->
 	
    <div data-role="content">
-       <div class="app" style="display:none;">
+       <div class="app">
          <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
@@ -157,9 +167,9 @@
          <p id="deviceProperties">Loading device properties...</p> 
          </div>
  
-       <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
+       
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" charset="utf-8" >
             app.initialize();
         </script>
 
@@ -175,7 +185,7 @@
 
 <div data-role="page" id="two">
 <div data-role="header">
-		<h1>Pain Rating 1</h1>
+		<h1>Pain Rating</h1>
 	</div>
 <div data-role="content" >	
 		<h2>TWO</h2>
