@@ -22,11 +22,11 @@
 	//var elementday = document.getElementById('dayinfo');
         var d = new Date();
         //elementday.innerHTML = 'day of the week = ' + d.getDay();
-	if (d.getDay() == 1) { //monday show the last question
-	     document.getElementById('onmonday').style.visibility = 'show';
+	if (d.getDay() == 1) { //monday show the last questionisible
+	     document.getElementById('onmonday').style.display = 'block';
 		}
 	else {
-             document.getElementById('onmonday').style.visibility = 'hidden';
+             document.getElementById('onmonday').style.display = 'none';
 	}
     }
 
@@ -148,7 +148,7 @@
 	</div><!-- /header -->
 	
    <div data-role="content">
-       <div class="app" style="visibility:hidden;">
+       <div class="app" style="display:none;">
          <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
